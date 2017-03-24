@@ -1,0 +1,14 @@
+<% if @info.comments.count >0 %>
+
+  
+  
+  <% @info.comments.each do |c| %>
+  <%= c.commenter %>
+  <%= c.created_at%>
+ 	<p><%= c.body %> </p>
+
+
+
+
+	<% end %>
+<% end %>

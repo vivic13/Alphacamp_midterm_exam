@@ -3,12 +3,22 @@
 <p><%= @info.content %></p>
 
 
+	<%= render :partial => 'comments/comment' %>
+
+
+	<%= render :partial => 'comments/form' %>
+
+
+
 <hr>
 
 
 <%= link_to '修改', edit_info_path(@info) %>
 <%= link_to '刪除', info_path(@info),method: :delete, data:{ confirm: "Are you sure?"}%>
 <%= link_to '回首頁', infos_path %>
+
+
+
 
 
 
