@@ -9,9 +9,6 @@
  		<% if c.commenter==current_user.nickname || @info.host ==current_user.nickname %>
 		   	<%= link_to 'Destroy Comment', info_comment_path(@info,c) ,method: :delete, data: { confirm: '確定要刪除留言?' } %>
 			<% end %>
-
-
-
-
+	
 	<% end %>
 <% end %>
