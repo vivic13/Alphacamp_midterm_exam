@@ -1,0 +1,11 @@
+<%= link_to '新增資訊?', new_info_path%>
+
+
+<% @infos.each do |p| %>
+	<div> 
+	<%= p.title %>
+	<%= p.created_at %> 
+	<%= link_to 'Detail', info_path(p) %>
+	</div>
+
+<% end %>

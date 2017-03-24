@@ -1,0 +1,32 @@
+<% if @info.errors.present?%>
+	  
+	<% @info.errors.each do |error, message|%>
+	<%= "#{error.capitalize}  #{message}" %>
+	<% end %>
+<% end %>
+
+
+
+<%= form_for(@info) do |f| %> 
+
+<%= f.label :title, "主題(必填)" %>
+<%= f.text_field :title%>
+
+
+<%= f.label :content, "內容(必填)" %>
+<%= f.text_area :content %>
+
+<%= f.label :category_id, "分類(必填)" %>
+
+<% Category.all.each do |s| %>
+    <%= f.radio_button :category_id,s.id%><%= s.name%>
+
+    <% end %>
+
+
+
+
+<%= f.submit "儲存" %>
+<%= link_to '算了，回首頁', infos_path %>
+
+<% end %>

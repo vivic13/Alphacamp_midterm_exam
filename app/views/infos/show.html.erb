@@ -1,0 +1,15 @@
+<h1> title : <%= @info.title %> </h1>
+<h2> category : <%= @info.category.name %> </h2>
+<p><%= @info.content %></p>
+
+
+<hr>
+
+
+<%= link_to '修改', edit_info_path(@info) %>
+<%= link_to '刪除', info_path(@info),method: :delete, data:{ confirm: "Are you sure?"}%>
+<%= link_to '回首頁', infos_path %>
+
+
+
+
