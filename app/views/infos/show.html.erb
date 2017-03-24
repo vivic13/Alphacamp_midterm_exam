@@ -1,5 +1,6 @@
 <h1> title : <%= @info.title %> </h1>
 <h2> category : <%= @info.category.name %> </h2>
+<h3> who: <p><%= @info.host %></p></h3>
 <p><%= @info.content %></p>
 
 
@@ -7,15 +8,22 @@
 
 
 	<%= render :partial => 'comments/form' %>
+<%if current_user && current_user.nickname == @info.host %>
+	<%= link_to '修改', edit_info_path(@info) %>
+	<%= link_to '刪除', info_path(@info),method: :delete, data:{ confirm: "Are you sure?"}%>
+	<%= link_to '回首頁', infos_path %>
+<% else %>
 
+	<%= link_to '回首頁', infos_path %>
+<% end %>
 
 
 <hr>
 
 
-<%= link_to '修改', edit_info_path(@info) %>
-<%= link_to '刪除', info_path(@info),method: :delete, data:{ confirm: "Are you sure?"}%>
-<%= link_to '回首頁', infos_path %>
+
+
+
 
 
 

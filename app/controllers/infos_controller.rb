@@ -1,5 +1,5 @@
 class InfosController < ApplicationController
-	
+	before_action :authenticate_user!
 	before_action :find_info, only:[:show, :edit, :update, :destroy]
 
 
@@ -12,6 +12,8 @@ class InfosController < ApplicationController
 	end
 	def create
 		@info = Info.new(info_params)
+		@info.host = current_user.nickname
+		@info.user_id = current_user.id
 	 	if @info.save
 	 		redirect_to infos_path
 		else 
@@ -22,19 +24,33 @@ class InfosController < ApplicationController
 
 	end
 	def edit
+		if @info.host != current_user.nickname
+			flash[:alert]="something went wrong!"
+		end
 
 	end
 	def update
+
+	if @info.host == current_user.nickname
+
 		if @info.update(info_params)
 			redirect_to info_url(@info)
 		else 
 			render :edit
 		end
+	else
+		flash[:alert] = "something went wrong!"	
+	end
 
 	end
 	def destroy
-		@info.destroy
-		redirect_to infos_path
+
+		if @info.host == current_user.nickname
+			@info.destroy
+			redirect_to infos_path
+		else
+			flash[:alert] = "something went wrong!"	
+		end
 	end
 
 	private

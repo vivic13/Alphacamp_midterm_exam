@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+
 	before_action :find_info
 
 	def create
@@ -12,11 +13,14 @@ class CommentsController < ApplicationController
 	end
 
 	def destroy
-		@comment=@info.comments.find(params[:id])
-		
-		@comment.destroy
-		redirect_to info_path(@info)
-		
+		if @comment.commenter == current_user.nickname || @info.host == current_user
+			@comment=@info.comments.find(params[:id])
+			
+			@comment.destroy
+			redirect_to info_path(@info)
+		else
+			flash[:alert] = "something went wrong!"	
+		end
 
 	end
 

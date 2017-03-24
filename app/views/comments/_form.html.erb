@@ -3,7 +3,7 @@
   
     <p>
     <%= f.label :comments,"留言者：" %><br>
-    <%= f.text_field :commenter%>
+    <%= f.text_field :commenter ,:value => current_user.nickname,:readonly => true%>
 
     </p>
     <p>
